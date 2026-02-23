@@ -1,29 +1,27 @@
 import pygame as pg
+import math
 
 pg.init()
-
 pg.display.set_caption("Кебрал спейс программ")
+screen = pg.display.set_mode((1500, 1000))
+clock = pg.time.Clock()
+ship_x = 700
+ship_y = 500
+angle = 0
+move_speed = 3
+rotation_speed = 0.05
+running = True
 
-screen = pg.display.set_mode((1500,1000))
-
-
-x = 525
-y = 450
-
-c = 0
-
-while True:
+while running:
     screen.fill(pg.Color("black"))
-    pg.draw.circle(screen,pg.Color("blue"),(750,500),200)
     for event in pg.event.get():
         if event.type == pg.QUIT:
-            quit()
-    keys = pg.key.get_pressed()
-    if keys[pg.K_a]:
-        c -= 0.0001
-    if keys[pg.K_d]:
-        c += 0.0001
-    y -= 0.1
-    x += c
-    pg.draw.rect(screen,pg.Color("grey"),(x, y, 25, 25))
+            running = False
+    angle -= rotation_speed
+    ship_x += move_speed * math.cos(angle)
+    ship_y += move_speed * math.sin(angle)
+    pg.draw.circle(screen, pg.Color("blue"), (750, 500), 20)
+    pg.draw.rect(screen, pg.Color("grey"), (int(ship_x), int(ship_y), 25, 25))
     pg.display.flip()
+    clock.tick(60)
+pg.quit()
