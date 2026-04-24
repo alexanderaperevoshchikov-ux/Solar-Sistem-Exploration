@@ -1,0 +1,14 @@
+n = int(input())
+
+c = int(input())
+b = None
+for i in range(n - 1):
+    avto = int(input())
+    if c < avto:
+        c = avto
+    if avto < 30:
+        b = "YES"
+    else:
+        b = "NO"
+
+print(c,b)

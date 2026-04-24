@@ -1,0 +1,10 @@
+n = int(input())
+
+c = int(input())
+for i in range(n - 1):
+    number = int(input())
+
+    if number % 6 == 0 and c > number:
+        c = number
+
+print(c)
